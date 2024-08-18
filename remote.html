@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESP8266 Robot Car Remote</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      button {
+        padding: 15px 30px;
+        font-size: 18px;
+        margin: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ESP8266 Robot Car Remote</h1>
+    <button onclick="sendCommand('F')">Forward</button>
+    <button onclick="sendCommand('B')">Backward</button>
+    <button onclick="sendCommand('L')">Left</button>
+    <button onclick="sendCommand('R')">Right</button>
+    <button onclick="sendCommand('G')">Forward Left</button>
+    <button onclick="sendCommand('I')">Forward Right</button>
+    <button onclick="sendCommand('H')">Backward Left</button>
+    <button onclick="sendCommand('J')">Backward Right</button>
+    <button onclick="sendCommand('S')">Stop</button>
+
+    <script>
+      const baseURL = "http://192.168.4.1/control?command=";
+
+      function sendCommand(command) {
+        fetch(baseURL + command)
+          .then((response) => response.text())
+          .then((data) => console.log("Success:", data))
+          .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </body>
+</html>
